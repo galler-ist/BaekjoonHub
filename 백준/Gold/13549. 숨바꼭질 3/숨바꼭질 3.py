@@ -7,6 +7,7 @@ def hide(N):
     person_list[N]=0
     while stack:
         d,t = stack.popleft()
+        if t>person_list[K]:continue
         if d<0 or d>=150000:continue
         if person_list[d-1]>t+1:
             person_list[d-1]=t+1
@@ -17,7 +18,6 @@ def hide(N):
         if d<=66667 and person_list[2*d]>t:
             person_list[2*d]=t
             stack.append([2*d,t])
-
     return person_list
 
 N,K = map(int,input().split())
