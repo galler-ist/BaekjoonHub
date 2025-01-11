@@ -1,15 +1,34 @@
-n = int(input())
+from collections import deque
+def make_one(N):
+    nums = [float('inf') for _ in range(N+1)]
+    num_list = deque()
+    num_list.append(N)
+    nums[N]=0
+    while num_list:
+        num = num_list.popleft()
+        if num%3==0:
+            num_next = num//3
+            if nums[num_next]>nums[num]+1:
+                nums[num_next] = nums[num]+1
+                num_list.append(num_next)
 
-d = [0] * 1000001
+                                 
+        if num%2==0:
+            num_next = num//2
+            if nums[num_next]>nums[num]+1:
+                nums[num_next] = nums[num]+1
+                num_list.append(num_next)
 
-# DP(bottom-up)
-for i in range(2, n+1):
-    d[i] = d[i-1] + 1
+                
+        num_next = num-1
+        if nums[num_next]>nums[num]+1:
+            nums[num_next] = nums[num]+1
+            num_list.append(num_next)
+
+    return nums[1]
     
-    if i%2 == 0:
-        d[i] = min(d[i], d[i//2] + 1)
+    
 
-    if i%3 == 0:
-        d[i] = min(d[i], d[i//3] + 1)
-
-print(d[n])
+N = int(input())
+result = make_one(N)
+print(result)
