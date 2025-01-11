@@ -11,6 +11,8 @@ def make_one(N):
             if nums[num_next]>nums[num]+1:
                 nums[num_next] = nums[num]+1
                 num_list.append(num_next)
+            if num_next == 1:
+                return nums[1]
 
                                  
         if num%2==0:
@@ -18,12 +20,16 @@ def make_one(N):
             if nums[num_next]>nums[num]+1:
                 nums[num_next] = nums[num]+1
                 num_list.append(num_next)
+            if num_next == 1:
+                return nums[1]
 
                 
         num_next = num-1
         if nums[num_next]>nums[num]+1:
             nums[num_next] = nums[num]+1
             num_list.append(num_next)
+        if num_next == 1:
+            return nums[1]
 
     return nums[1]
     
