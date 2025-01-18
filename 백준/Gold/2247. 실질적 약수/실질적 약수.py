@@ -1,15 +1,20 @@
 import sys
-input = sys.stdin.readline
-def sod(n):
-    result = 0
-    if n<=3: return result
-    for num in range(2, (n//2)+1):
-        result += (n//num)*num
 
-    result -= ((n//2)*(n//2+1))//2
-    result += 1
-    return result%1000000
+input = sys.stdin.readline
+
+def csod(n):
+    result = 0
+    if n <= 3: 
+        return result
+    
+    sqrtn = int(n**0.5)
+    for num in range(2, sqrtn + 1):
+        k = n // num
+        result += num * (k - num + 1) + (k - num) * (k + num + 1) // 2
+        result %= 1000000
+
+    return result
 
 n = int(input())
-result = sod(n)
+result = csod(n)
 print(result)
