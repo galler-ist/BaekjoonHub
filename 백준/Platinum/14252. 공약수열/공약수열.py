@@ -1,14 +1,11 @@
 def gcdlist(nums):
     count = 0
-    idx = 0
-    length = len(nums)
     nums = sorted(nums)
-    while idx<=length-2:
-        A = nums[idx]
-        B = nums[idx+1]
+    for idx in range(len(nums)-1):
+        A, B = nums[idx:idx+2]
         if gcd(A,B)!=1:
             count += check_gcd(A,B)
-        idx+=1
+            
     return count
 
 
