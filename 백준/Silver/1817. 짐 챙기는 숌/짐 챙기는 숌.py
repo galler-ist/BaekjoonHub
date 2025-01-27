@@ -1,14 +1,12 @@
 def check_box(books):
-    result = 0
+    result = 1
     temp = 0
     for book in books:
-        temp += book
-        if temp>M:
+        if book+temp<=M:
+            temp+=book
+        else:
             result +=1
             temp = book
-    if temp!=0:
-        result+=1
-
     return result
 
 N, M = map(int,input().split())
