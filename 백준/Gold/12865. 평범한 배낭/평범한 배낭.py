@@ -1,12 +1,23 @@
-N, K = map(int,input().split())
-bag = [list(map(int,input().split())) for _ in range(N)]
-dp = [[0]*(K+1) for _ in range(N+1)] # 행: 가방 개수, 열: 무게 오름차순
+def recur(idx, weight):
+    global answer
+    if weight > B:
+        return -9999999
+    
+    if idx ==N:
+        return 0
+    
+    if dp[idx][weight] != -1:
+        return dp[idx][weight]
+    
+    # 물건을 넣은 경우
+    dp[idx][weight] = max(recur(idx+1, weight + items[idx][0])+items[idx][1],recur(idx+1, weight))
+    
+    return dp[idx][weight]
 
-for i in range(1,N+1):
-    w,v = bag[i-1]
-    for j in range(1, K+1):
-        if j<w:
-            dp[i][j] = dp[i-1][j]
-        else:
-            dp[i][j] = max(dp[i-1][j], dp[i-1][j-w]+v)
-print(dp[-1][-1])
+N, B = map(int,input().split())
+
+items = [list(map(int,input().split())) for _ in range(N)]
+
+dp = [[-1 for _ in range(100001)] for _ in range(N)]
+result = recur(0,0)
+print(result)
