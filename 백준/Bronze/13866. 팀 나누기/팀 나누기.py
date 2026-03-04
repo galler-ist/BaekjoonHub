@@ -1,5 +1,2 @@
 A,B,C,D = map(int,input().split())
-t1 = abs(A+B-C-D)
-t2 = abs(A-B+C-D)
-t3 = abs(A-B-C+D)
-print(min(t1,t2,t3))
+print(abs(A-B-C+D))
